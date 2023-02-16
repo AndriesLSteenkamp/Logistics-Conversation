@@ -97,7 +97,6 @@ class UserRegistrationForm(forms.Form):
 	longer than 7 letters and that the person has not used their name or surname in the password
 	"""
 	def clean_p2(self):
-		print("HERER")
 		p1 = self.cleaned_data['p1']
 		p2 = self.cleaned_data['p2']
 		name = self.cleaned_data['first_name'].lower()
@@ -145,69 +144,6 @@ class UserRegistrationForm(forms.Form):
 		if checked == False:
 			self.add_error(None,ValidationError("You must agree to the POPI act in order to gain access to the Logistics Conversation Portal"))
 		return checked
-	# def clean_test(self):
-	# 	cleaned_data = super(UserRegistrationForm,self).clean()
-	# 	username = cleaned_data.get('username')
-	# 	email = cleaned_data.get('email')
-	# 	checked = cleaned_data.get('checked')
-	# 	p1 = cleaned_data.get('p1')
-	# 	p2 = cleaned_data.get('p2')
-	# 	print("In user registration clean")
-
-	# 	if(not checked):
-	# 		self.add_error(None,ValidationError("Please Agree to the Disclaimer"))
-	# 		return False
-
-
-	# 	if (username != ""):
-	# 		if any(c in illegal_symbols for c in username):
-	# 			self.add_error(None,ValidationError("Username contains illegal symbols, please use only letters, numbers and ',','.'"))
-	# 			return False
-	# 	else:
-	# 		self.add_error(None,ValidationError("Username cannot be blank"))
-	# 		return False
-			
-
-	# 	if (len(User.objects.filter(username=username)) != 0):
-	# 		self.add_error(None,ValidationError("Username already exists"))
-	# 		return False
-
-	# 	if (len(User.objects.filter(email=email)) != 0):
-	# 		self.add_error(None,ValidationError("Email address already exists"))
-	# 		return False
-		
-	# 	if (p1 != ""):
-	# 		if(len(p1)>5):
-	# 			if(p1!=p2):
-	# 				self.add_error(None,ValidationError("Passwords do not match"))
-	# 				return False
-	# 		else:
-	# 			self.add_error(None,ValidationError("Passwords less than 5 characters"))
-	# 			return False
-	# 	else:
-	# 		self.add_error(None,ValidationError("Password cannot be empty"))
-	# 		return False
-
-
-#class ProfileRegistrationForm(ModelForm):
-#   class Meta:
-#		model = Profile
-#		fields = ()
-
-#	def save(self,user_information,commit=True):
-#
-#		profile = super(ProfileRegistrationForm,self).save(commit=False)
-#
-#		profile.user = user_information
-#
-#		if commit:
-#			profile.save()
-#		return profile
-
-#class ProfileUpdateForm(ModelForm):
-#	class Meta:
-#		model = Profile
-#		fields = ("About","title","position","profile_picture",)
 
 class CreatePostForm(ModelForm):
 	class Meta:

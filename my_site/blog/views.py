@@ -25,9 +25,14 @@ def create_post_view(request):
 		formP = CreatePostForm(request.POST)
 
 		if formP.is_valid():
-			post = formP.save(author,request.FILES['image'])
-			messages.success(request,f"Post was successfully created")
-			return redirect('share-thoughts')
+			if 'image' in request.FILES:
+				post = formP.save(author,request.FILES['image'])
+				messages.success(request,f"Post was successfully created")
+				return redirect('share-thoughts')
+			else:
+				post = formP.save(author,"uploads/profile_pictures/default.png")
+				messages.success(request,f"Post was successfully created")
+				return redirect('share-thoughts')
 
 		else:
 			messages.error(request,("There was an error with your post. Please ensure all information is provided."))
@@ -388,7 +393,6 @@ class DeletePostView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Post
 	template_name ='blog/delete_post.html'
 	success_url = reverse_lazy('share-thoughts')
-
 	def test_func(self):
 		post = self.get_object()
 		return self.request.user==post.author

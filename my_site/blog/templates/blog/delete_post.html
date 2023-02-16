@@ -11,21 +11,13 @@
 {% block content %}
 <center><h2 style="margin: 10px;"> Delete Post</h2></center>
 
-<!--<div class="form-group">
-    <form method="POST" enctype="multipart/form-data"> 
-        {% csrf_token %}
-        {{form.as_p}}
-        <strong>Do you really want to delete the post?</strong> <br>
-        <button type="submit" class="btn btn-danger">Delete</button>
-        <a href="{% url "post-detail-page" post.slug %}" class="btn btn-secondary">Back</a>
-    </form>
-</div>  -->
+
 
 <div class="container">
 
     <div class="row mt-5">
         <div class="col-md-5 col-sm-6">
-            <a href="{% url 'post-detail-page' object.pk %}" class="btn btn-light">Back to Post</a>
+            <a href="{% url 'post-detail-page' post.pk %}" class="btn btn-light">Back to Post</a>
         </div>
     </div>
 
