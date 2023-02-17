@@ -44,7 +44,8 @@ if type(LOCAL) != 'bool':
 		DEBUG = False
 
 ALLOWED_HOSTS = [os.environ.get("SERVER_IP"),
-				 '127.0.0.1']
+				'logisticsconversation.csir.co.za',
+				'127.0.0.1']
 
 
 # Application definition
